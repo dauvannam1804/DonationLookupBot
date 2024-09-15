@@ -1,3 +1,6 @@
+# Tham khao tu 
+# https://www.tiktok.com/@juno_okyo/video/7414532506705300737?is_from_webapp=1&sender_device=pc&web_id=7414513215453398549
+
 import os
 import sys
 import time
