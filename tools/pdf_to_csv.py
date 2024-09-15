@@ -26,29 +26,19 @@ def extract_and_write_tables(pdf_path, output_path, max_pages=None, batch_size=1
                 tables = page.extract_tables()
 
                 for table in tables:
-                    # print("#TABLE:", table)
                     for row in table[1:]:
                         dates, transaction_codes, amounts, contents = [], [], [], []
 
                         for j, cell in enumerate(row):
-                            # print("### ROWS :", row)
-                            # print(type(row))
                             lines = cell.split("\n")
-                            # print("### lines: ", lines)
                             if j == 0:
                                 dates.extend(lines[::2])
-                                # print("dates:", dates)
                                 transaction_codes.extend(lines[1::2])
-                                # print("transaction_codes:", transaction_codes)
                             elif j == 2:
                                 amounts.extend(lines)
-                                # print("amounts:", amounts)
                             elif j == 4:
                                 contents.extend(lines)
-                                # print("contents:", contents)
-                        # print("LEN DATE:", len(dates))
-                        # print("LEN CONTENT:", len(contents))
-                        # exit(1)
+
 
                         for k in range(len(dates)):
                             batch_tables.append([
