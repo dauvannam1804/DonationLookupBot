@@ -1,0 +1,26 @@
+recipe: default.v1
+language: en
+
+## Config for using OPENAI API
+pipeline:
+  - name: SingleStepLLMCommandGenerator
+    llm:
+      model_name: gpt-4o-mini-2024-07-18
+
+policies:
+- name: FlowPolicy
+
+## Config for Local LLM
+# pipeline:
+# - name: SingleStepLLMCommandGenerator
+#   llm:
+#     type: ollama
+#     model: qwen2:0.5b
+
+#   flow_retrieval:
+#     active: false
+        
+# policies:
+# - name: FlowPolicy
+
+assistant_id: 20240915-214319-insulated-refinery

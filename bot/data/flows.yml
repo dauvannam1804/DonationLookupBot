@@ -1,0 +1,15 @@
+flows:
+  search_transaction:
+    description: |
+      Flow này được sử dụng để tìm giao dịch dựa trên thông tin mà người dùng cung cấp. 
+      Thông tin có thể là tên người dùng, mã giao dịch, hoặc bất kỳ thông tin nào khác có liên quan. 
+      Chatbot sẽ trả về kết quả các giao dịch liên quan.
+    steps:
+      - collect: search_target
+        description: |
+          Thu thập thông tin tìm kiếm mà người dùng cung cấp, chẳng hạn như tên, mã giao dịch, 
+          hoặc bất kỳ thông tin liên quan nào để thực hiện truy vấn giao dịch.
+      - action: action_search_transaction
+        description: |
+          Thực hiện truy vấn cơ sở dữ liệu dựa trên thông tin đã thu thập 
+          và trả về kết quả giao dịch.
