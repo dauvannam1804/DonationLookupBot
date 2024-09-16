@@ -18,3 +18,18 @@ flows:
           Thu thập thông tin tìm kiếm mà người dùng cung cấp, chẳng hạn như tên, mã giao dịch, 
           hoặc bất kỳ thông tin liên quan nào để thực hiện truy vấn giao dịch.
       - action: action_search_transaction
+
+  
+  calculate_total_donations_within_date_range:
+    description: |
+      Flow này được sử dụng để tính tổng số tiền ủng hộ trong khoảng thời gian mà người dùng cung cấp.
+      Người dùng sẽ nhập khoảng thời gian bắt đầu và kết thúc. Chatbot sẽ trả về tổng số tiền ủng hộ 
+      trong khoảng thời gian đó.
+    steps:
+      - collect: donation_timeframe
+        description: |
+          Thu thập khoảng thời gian (ngày bắt đầu và ngày kết thúc luôn phải có dạng dd/mm/yyyy) 
+          mà người dùng cung cấp để thực hiện tính toán tổng số tiền ủng hộ. Nếu người dùng chỉ 
+          muốn tính trong 1 ngày thì trả về dạng "dd/mm/yyyy" còn trong 1 khoảng thời gian thì 
+          trả về dạng "dd/mm/yyyy dd/mm/yyyy" với ngày bắt đầu và kết thúc tương ứng.
+      - action: action_calculate_total_donations_within_date_range

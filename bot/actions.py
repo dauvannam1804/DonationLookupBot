@@ -42,3 +42,55 @@ class ActionSearchTransaction(Action):
             )
         
         dispatcher.utter_message(text = f"# Kết quả search với '{search_target}' #\n" + bot_response)
+
+
+class ActionCalculateTotalDonationsWithinDateRange(Action):
+    def name(self) -> Text:
+        return "action_calculate_total_donations_within_date_range"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        donation_timeframe = tracker.get_slot(key='donation_timeframe')
+        transactions_collection = db['transactions']
+
+        # Chuyển đổi chuỗi ngày thành đối tượng datetime
+        timeframe_parts = donation_timeframe.split()
+
+        # Nếu chỉ có 1 ngày, sử dụng cho cả ngày bắt đầu và kết thúc
+        if len(timeframe_parts) == 1:
+            start_date = timeframe_parts[0]
+            end_date = start_date
+        else:
+            start_date = timeframe_parts[0]
+            end_date = timeframe_parts[1]
+
+        query = [
+            {
+                "$match": {
+                    "Date": {
+                        "$gte": start_date,
+                        "$lte": end_date
+                    }
+                }
+            },
+            {
+                "$group": {
+                    "_id": None,
+                    "total_amount": {"$sum": "$Amount"}
+                }
+            }
+        ]    
+        result = list(transactions_collection.aggregate(query))
+
+        if result:
+            total_amount = result[0]['total_amount']
+            if len(timeframe_parts) == 1:
+                dispatcher.utter_message(text = f"Tổng số tiền ủng hộ trong ngày {start_date} là {total_amount} vnd")
+            else:
+                dispatcher.utter_message(text = f"Tổng số tiền ủng hộ trong khoảng thời gian {start_date}-{end_date} là {total_amount} vnd")
+        else:
+            dispatcher.utter_message(text="Không có giao dịch nào trong khoảng thời gian này.")
