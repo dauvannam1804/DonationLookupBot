@@ -1,21 +1,26 @@
 version: "3.1"
 
 slots:
-  recipient:
+  search_target:
     type: text
-    mappings:
-      - type: from_llm
-  amount:
-    type: float
-    mappings:
-      - type: from_llm
+
+intents:
+  - session_start
+
+actions:
+  - action_search_transaction
 
 responses:
-  utter_ask_recipient:
-    - text: "Who would you like to send money to?"
+  # utter_hello:
+  #   - text: "Xin chào, tôi có thể giúp gì cho bạn?"
+  #     buttons:
+  #     - title: "Truy vấn thông tin giao dịch"
+  #       payload: "Output khi click button Truy vấn thông tin giao dịch"
+  #     - title: "Vẽ biểu đồ"
+  #       payload: "Output khi click button Vẽ biểu đồ"
 
-  utter_ask_amount:
-    - text: "How much money would you like to send?"
+  utter_ask_search_target:
+    - text: "Nhập thông tin cần tìm kiếm"
 
-  utter_transfer_complete:
-    - text: "All done. {amount} has been sent to {recipient}."
+# Tìm kiếm thông tin giao dịch
+# CAO VIET TUAN
