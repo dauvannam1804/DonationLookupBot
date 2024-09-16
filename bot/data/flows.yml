@@ -1,4 +1,12 @@
 flows:
+  # pattern_session_start:
+  #   description: Flow for starting the conversation
+  #   name: pattern session start
+  #   nlu_trigger:
+  #     - intent: session_start
+  #   steps:
+  #     - action: utter_hello
+
   search_transaction:
     description: |
       Flow này được sử dụng để tìm giao dịch dựa trên thông tin mà người dùng cung cấp. 
@@ -10,6 +18,3 @@ flows:
           Thu thập thông tin tìm kiếm mà người dùng cung cấp, chẳng hạn như tên, mã giao dịch, 
           hoặc bất kỳ thông tin liên quan nào để thực hiện truy vấn giao dịch.
       - action: action_search_transaction
-        description: |
-          Thực hiện truy vấn cơ sở dữ liệu dựa trên thông tin đã thu thập 
-          và trả về kết quả giao dịch.
