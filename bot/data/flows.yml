@@ -33,3 +33,15 @@ flows:
           muốn tính trong 1 ngày thì trả về dạng "dd/mm/yyyy" còn trong 1 khoảng thời gian thì 
           trả về dạng "dd/mm/yyyy dd/mm/yyyy" với ngày bắt đầu và kết thúc tương ứng.
       - action: action_calculate_total_donations_within_date_range
+
+  
+  draw_transaction_chart_within_date_range:
+    description: |
+      Flow này được sử dụng để vẽ biểu đồ thể hiện số lượng giao dịch trong khoảng thời gian mà người dùng cung cấp.
+      Người dùng sẽ nhập ngày bắt đầu và ngày kết thúc. Chatbot sẽ trả về biểu đồ số lượng giao dịch trong khoảng thời gian đó.
+    steps:
+      - collect: transaction_date_range
+        description: |
+          Thu thập khoảng thời gian (ngày bắt đầu và ngày kết thúc luôn phải có dạng dd/mm/yyyy) 
+          mà người dùng cung cấp. Trả về dạng "dd/mm/yyyy dd/mm/yyyy" với ngày bắt đầu và kết thúc tương ứng.
+      - action: action_draw_transaction_chart_within_date_range

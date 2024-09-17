@@ -5,11 +5,14 @@ slots:
     type: text
   donation_timeframe:
     type: text
+  transaction_date_range:
+    type: text
 
 
 actions:
   - action_search_transaction
   - action_calculate_total_donations_within_date_range
+  - action_draw_transaction_chart_within_date_range
 
 responses:
   utter_ask_search_target:
@@ -18,6 +21,8 @@ responses:
   utter_ask_donation_timeframe:
     - text: "Bạn muốn tính tổng số tiền ủng hộ trong khoảng thời gian nào"
 
+  utter_ask_transaction_date_range:
+    - text: "Bạn cần vẽ biều đồ thể hiện số lượng giao dịch trong khoảng thời gian nào?"
 
 
 # Tìm kiếm thông tin giao dịch
@@ -25,3 +30,5 @@ responses:
 
 # Tính tổng số tiền giao dịch từ ngày 1/9/2024 đến ngày 4/9/2024
 # Tính tổng số tiền giao dịch trong ngày 9/9/2024
+
+# Vẽ biểu đồ thể hiện số lượng giao dịch từ 1/9/2024 đến 10/9/2024

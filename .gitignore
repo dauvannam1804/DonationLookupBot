@@ -1,4 +1,4 @@
 .gitignore
 .env
 bot/.rasa
-bot/models
+bot/__pycache__
